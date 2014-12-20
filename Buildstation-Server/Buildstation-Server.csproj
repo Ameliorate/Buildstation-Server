@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\ContentLoader.cs" />
+    <Compile Include="Class\Objects\ObjectTemplate.cs" />
+    <Compile Include="Class\Objects\Space.cs" />
+    <Compile Include="Class\ObjectTools.cs" />
+    <Compile Include="Class\PhysicalObject.cs" />
+    <Compile Include="Class\Turf.cs" />
+    <Compile Include="Class\Varibles.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
