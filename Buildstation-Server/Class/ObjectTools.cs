@@ -40,6 +40,7 @@ namespace Buildstation_Server.Class
             CreatedTile.Initalise();            // Initalises it.
             // Interesting thaught, if an object is created in another thread and the rendering engine tries to render that object, the game will crash.
             Variables.PhysicalObjects.Add(ObjectName, CreatedTile);     // Adds a refrence to the object in the tile dictionary.
+            NetworkThread.BroadcastMessage("ObjSpawn", XPos + "," + YPos + "," + ZPos + "," + ObjectName + "," + ObjectType);
         }
 
 

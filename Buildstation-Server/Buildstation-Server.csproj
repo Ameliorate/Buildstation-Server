@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\ClientNetworkSorter.cs" />
+    <Compile Include="Class\ClientNetworkSorters\InfoHandler.cs" />
+    <Compile Include="Class\ClientTracker.cs" />
     <Compile Include="Class\ContentLoader.cs" />
+    <Compile Include="Class\NetworkThread.cs" />
     <Compile Include="Class\Objects\ObjectTemplate.cs" />
     <Compile Include="Class\Objects\Space.cs" />
     <Compile Include="Class\ObjectTools.cs" />
