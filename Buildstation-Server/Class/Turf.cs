@@ -8,7 +8,7 @@ namespace Buildstation_Server.Class
 {
     abstract class Turf : PhysicalObject
     {
-        protected bool IsVaccum;        // Probably mispelled.
+        protected byte LeakPercent;     // The percentage of gas on the tile that will be leaked into space. Behind the scenes, the gas is deleted.
 
 
 

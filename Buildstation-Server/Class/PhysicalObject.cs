@@ -112,8 +112,40 @@ namespace Buildstation_Server.Class
         {
             return RotationInRadians;
         }
+        // Start networking methods.
+        // If you want to do anything with networking in a class, you would overwride these.
 
+        /// <summary>
+        /// Gets the data nesasary to sync to clients upon initalisation.
+        /// </summary>
+        /// <returns>Returns the data in CSV form.</returns>
+        public virtual string GetData()
+        {
+            return "";      // There is no data that would be sent to clients upon initatisation.
+        }
 
+        /// <summary>
+        /// Gets the update data to be sent to clients.
+        /// </summary>
+        /// <returns>Returns the data in colin ':' seperated value form.</returns>
+        public virtual string GetUpdateData()
+        {
+            return "";      // There is no data that will ever be sent to the client after initalisation.
+        }
+
+        /// <summary>
+        /// Allows you to sync certan values batween client and server.
+        /// </summary>
+        /// <param name="DataInCSV">The data, in Colin ':' seperated value format.</param>
+        public virtual void GiveData(string DataInCSV)
+        {
+            // Does nothing here, because there is no data that will be given.
+        }
+
+        public virtual void NetUpdate(string DataInCSV)
+        {
+            // Do nothing, since there is no need to update.
+        }
 
         /// <summary>
         /// Map update thread, inefficent, resource hog, and needs to be redone in favor of a better way. More than 6 or so slows the program to very few lines per second. Less than 1.
