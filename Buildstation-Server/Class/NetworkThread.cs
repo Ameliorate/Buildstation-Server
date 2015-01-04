@@ -56,5 +56,20 @@ namespace Buildstation_Server.Class
                 Progress++;
             }
         }
+
+        public static void BroadcastMessage(string Sorter, string[] Message)
+        {
+            int Progress = 0;
+            string Key;
+
+            while (Progress <= ClientTrackerKeys.Count)
+            {
+                if (Progress >= ClientTrackerKeys.Count)
+                    break;
+                Key = ClientTrackerKeys[Progress];
+                ClientTrackers[Key].SendMessage(Sorter, Message);
+                Progress++;
+            }
+        }
     }
 }

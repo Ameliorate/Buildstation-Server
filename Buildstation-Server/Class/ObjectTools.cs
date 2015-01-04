@@ -24,7 +24,10 @@ namespace Buildstation_Server.Class
             CreatedTile.Initalise();            // Initalises it.
             // Interesting thaught, if an object is created in another thread and the rendering engine tries to render that object, the game will crash.
             Variables.PhysicalObjects.Add(ObjectName, CreatedTile);     // Adds a refrence to the object in the tile dictionary.
+            NetworkThread.BroadcastMessage("PlaceTile", ObjectType + "," + ObjectName + "," + XPos + "," + YPos + "," + InitData);
         }
+
+        private static string InitData;
 
         /// <summary>
         /// Creates a tile at the intended coordanites with the intended name. Also handles all initalision and object handling logic.
@@ -40,10 +43,37 @@ namespace Buildstation_Server.Class
             CreatedTile.Initalise();            // Initalises it.
             // Interesting thaught, if an object is created in another thread and the rendering engine tries to render that object, the game will crash.
             Variables.PhysicalObjects.Add(ObjectName, CreatedTile);     // Adds a refrence to the object in the tile dictionary.
-            NetworkThread.BroadcastMessage("ObjSpawn", XPos + "," + YPos + "," + ZPos + "," + ObjectName + "," + ObjectType);
+            InitData = CreatedTile.GetData();
+            NetworkThread.BroadcastMessage("PlaceTile", ObjectType + "," + ObjectName + "," + XPos + "," + YPos + "," + ZPos + "," + InitData);
         }
 
+        private static List<String> SpawnPacketBuffer = new List<string>();
 
+        public static void SpawnObjectBuffer(string XPos, string YPos, string ZPos, string ObjectName, string ObjectType)
+        {
+            CreatedTile = CreateObject(XPos, YPos, ZPos, ObjectName, ObjectType);       // Creates the object.
+            CreatedTile.Initalise();            // Initalises it.
+            // Interesting thaught, if an object is created in another thread and the rendering engine tries to render that object, the game will crash.
+            Variables.PhysicalObjects.Add(ObjectName, CreatedTile);     // Adds a refrence to the object in the tile dictionary.
+            InitData = CreatedTile.GetData();
+            SpawnPacketBuffer.Add(ObjectType + "," + ObjectName + "," + XPos + "," + YPos + "," + ZPos + "," + InitData);
+        }
+
+        public static void SpawnObjectBuffer(string XPos, string YPos, string ObjectName, string ObjectType)
+        {
+            CreatedTile = CreateObject(XPos, YPos, "No", ObjectName, ObjectType);       // Creates the object.
+            CreatedTile.Initalise();            // Initalises it.
+            // Interesting thaught, if an object is created in another thread and the rendering engine tries to render that object, the game will crash.
+            Variables.PhysicalObjects.Add(ObjectName, CreatedTile);     // Adds a refrence to the object in the tile dictionary.
+            SpawnPacketBuffer.Add(ObjectType + "," + ObjectName + "," + XPos + "," + YPos + "," + InitData);
+        }
+
+        public static void FlushPacketBuffer()
+        {
+            string[] SpawnObjectBufferAsArray;
+            SpawnObjectBufferAsArray = SpawnPacketBuffer.ToArray();
+            NetworkThread.BroadcastMessage("PlaceTile", SpawnObjectBufferAsArray);
+        }
 
 
         /// <summary>
