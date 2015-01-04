@@ -36,7 +36,7 @@ namespace Buildstation_Server.Class
                     break;
                 }
 
-                NetworkThread.NetworkSorters[DataSplit[0]].NewTrafic(DataSplit[1]);
+                NetworkThread.NetworkSorters[DataSplit[0]].NewTrafic(DataSplit[1], this);
             }
         }
 

@@ -13,7 +13,7 @@ namespace Buildstation_Server.Class.ClientNetworkSorters
             NetworkThread.RegisterNetworkSorter("Info", this);
         }
 
-        public override void NewTrafic(string Data)
+        public void NewTrafic(string Data, ClientTracker Client)
         {
             if (Data == "Connected")
                 Console.WriteLine("[Info] A New Client Has Connected.");
