@@ -40,6 +40,10 @@ namespace Buildstation_Server
 
             ObjectTools.FlushPacketBuffer();
 
+            Thread TileUpdateThread = new Thread(Class.TileUpdateThread.PhysicalUpdateLoop);
+            TileUpdateThread.Start();
+            
+
             Console.WriteLine("[Info] Finished Initalising");
         }
     }

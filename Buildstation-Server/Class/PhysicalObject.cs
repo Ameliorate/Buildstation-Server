@@ -142,9 +142,14 @@ namespace Buildstation_Server.Class
             // Does nothing here, because there is no data that will be given.
         }
 
-        public virtual void NetUpdate(string DataInCSV)
+        public virtual void ClientUpdate(string DataInCSV)
         {
             // Do nothing, since there is no need to update.
+        }
+
+        public virtual string Update()
+        {
+            return "";
         }
 
         /// <summary>
