@@ -36,7 +36,7 @@ namespace Buildstation_Server.Class
 
                         UpdateData = Variables.PhysicalObjects[TileAtPoint].Update();       // Trys to update it.
                         if (UpdateData != "")
-                            UpdatePackets.Add(UpdateData);
+                            UpdatePackets.Add(TileAtPoint + "," + UpdateData);
                         Progress++;
                     }
                 }
@@ -45,7 +45,7 @@ namespace Buildstation_Server.Class
                 string[] UpdateArray;
                 UpdateArray = UpdatePackets.ToArray();
 
-                NetworkThread.BroadcastMessage("TileUpdate", UpdateArray);
+                NetworkThread.BroadcastMessage("UpdateTile", UpdateArray);
 
                 TimeSinceLoopBegin = StopWatch.ElapsedMilliseconds;
                 SleepTime = Math.Abs((int)TimeSinceLoopBegin - 100);
