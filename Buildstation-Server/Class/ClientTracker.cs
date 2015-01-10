@@ -42,7 +42,6 @@ namespace Buildstation_Server.Class
 
         public void SendMessage(string Sorter, string Message)
         {
-            StreamReader SR = new StreamReader(Client.GetStream());
             StreamWriter SW = new StreamWriter(Client.GetStream());
             string MessageCompiled = Sorter + ";" + Message;
             SW.WriteLine(MessageCompiled);
@@ -56,13 +55,14 @@ namespace Buildstation_Server.Class
         /// <param name="Message">The message you want to send.</param>
         public void SendMessage(string Sorter, string[] Message)
         {
-            StreamReader SR = new StreamReader(Client.GetStream());
             StreamWriter SW = new StreamWriter(Client.GetStream());
             int Progress = 0;
             string MessageCompiled;
 
             while (Progress >= Message.Length)
             {
+                if (Progress == Message.Length)
+                    break;
                 MessageCompiled = Sorter + ";" + Message[Progress];
                 SW.WriteLine(MessageCompiled);
                 Progress++;

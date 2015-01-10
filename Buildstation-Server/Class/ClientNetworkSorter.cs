@@ -16,7 +16,7 @@ namespace Buildstation_Server.Class
         */      // This shouldnt be uncommented, it is just here as a reminder.
         protected string[] DataSplit;
 
-        public virtual void NewTrafic(string Data)
+        public virtual void NewTrafic(string Data, ClientTracker Client)
         {
             throw new NotImplementedException();
         }

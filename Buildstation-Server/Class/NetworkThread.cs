@@ -24,16 +24,19 @@ namespace Buildstation_Server.Class
             TcpListener Listener = new TcpListener(System.Net.IPAddress.Parse("127.0.0.1"), 25565);
             Listener.Start();
             string NewConnectionString;
+            Random Random = new Random();
 
             while (true)
             {
                 NewConnection = Listener.AcceptTcpClient();
-                NewConnectionString = NewConnection.ToString();
+                NewConnectionString = Random.Next(int.MaxValue).ToString();
 
                 ClientTrackers.Add(NewConnectionString, new ClientTracker(NewConnection));
                 ClientThreads.Add(NewConnectionString, new Thread(ClientTrackers[NewConnectionString].Connect));
                 ClientTrackerKeys.Add(NewConnectionString);
                 ClientThreads[NewConnectionString].Start();     // Creates an instance of the client tracking class, creates a new thread of it, then starts the thread. Also it adds the key to a list for use in broadcasting.
+
+                Console.WriteLine("[Info] New client " + NewConnectionString + " connected.");
             }
         }
 

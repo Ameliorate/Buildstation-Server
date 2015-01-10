@@ -17,6 +17,7 @@ namespace Buildstation_Server
 
             Class.ClientNetworkSorters.InfoHandler InfoHandler = new Class.ClientNetworkSorters.InfoHandler();
             Class.ClientNetworkSorters.TileGetHandler TileGetHandler = new Class.ClientNetworkSorters.TileGetHandler();
+            Class.ClientNetworkSorters.GetAllHandler GetAllHandler = new Class.ClientNetworkSorters.GetAllHandler();
 
             string CerrentName;
             int XPos = 0;
