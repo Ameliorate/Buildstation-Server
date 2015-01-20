@@ -46,6 +46,7 @@ namespace Buildstation_Server.Class
             string MessageCompiled = Sorter + ";" + Message;
             SW.WriteLine(MessageCompiled);
             SW.Flush();
+            Console.WriteLine("Sending message of " + MessageCompiled);
         }
 
         /// <summary>
