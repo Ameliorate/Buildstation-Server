@@ -32,8 +32,7 @@ namespace Buildstation_Server.Class.ClientNetworkSorters
             string CerrentTileName;
             string CerrentTileType;
             string InitData;
-
-            Console.WriteLine("GetAll Start");
+            
 
             while (true)
             {
@@ -58,26 +57,17 @@ namespace Buildstation_Server.Class.ClientNetworkSorters
                         CerrentXPoint = 0;
                         CerrentYPoint++;
 
-                        Console.WriteLine(CerrentYPoint);
 
                         if (CerrentYPoint == YGoal)
                         {
-                            Console.WriteLine("Finished Getall");
-
                             Client.SendMessage("PlaceTile", PacketBuffer.ToArray());
-                            Console.WriteLine("Sent Packet");
                             Client.SendMessage("Finished", "GetAll");
-                            Console.WriteLine("Sent finish");
 
                             break;      // I have a large dislike for 3 dimentional loops. Too many things to keep track of.
                         }
                     }
                 }
             }
-
-            //Client.SendMessage("PlaceTile", PacketBuffer.ToArray());
-
-            //Client.SendMessage("Finished", "GetAll");       // Tell the client it's finished reciveing all the data it needs.
         }
     }
 }

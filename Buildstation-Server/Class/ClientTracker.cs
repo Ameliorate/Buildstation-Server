@@ -12,22 +12,35 @@ namespace Buildstation_Server.Class
     {
         TcpClient Client;
 
-        public ClientTracker(TcpClient Client)
+        public ClientTracker(TcpClient Client, string UUID)
         {
             this.Client = Client;
+            this.UUID = UUID;
         }
 
-        string Data;
-        string[] DataSplit;
+        private string Data;
+        private string[] DataSplit;
+        public string UUID;
+        public bool Connected = false;
 
         public void Connect()
         {
             StreamReader SR = new StreamReader(Client.GetStream());
             StreamWriter SW = new StreamWriter(Client.GetStream());
+            Connected = true;
 
             while (true)
             {
-                Data = SR.ReadLine();
+                try
+                {
+                    Data = SR.ReadLine();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("[INFO] Client " + UUID + " disconected.");
+                    Connected = false;
+                    break;
+                }
                 DataSplit = Data.Split(';');
 
                 if (Data == "Sorter;Disconnect")    // Perhaps not nesasary, but I'm doing it anyway.
@@ -42,11 +55,14 @@ namespace Buildstation_Server.Class
 
         public void SendMessage(string Sorter, string Message)
         {
-            StreamWriter SW = new StreamWriter(Client.GetStream());
-            string MessageCompiled = Sorter + ";" + Message;
-            SW.WriteLine(MessageCompiled);
-            SW.Flush();
-            Console.WriteLine("Sending message of " + MessageCompiled);
+            try
+            {
+                StreamWriter SW = new StreamWriter(Client.GetStream());
+                string MessageCompiled = Sorter + ";" + Message;
+                SW.WriteLine(MessageCompiled);
+                SW.Flush();
+            }
+            catch { }
         }
 
         /// <summary>
@@ -56,19 +72,25 @@ namespace Buildstation_Server.Class
         /// <param name="Message">The message you want to send.</param>
         public void SendMessage(string Sorter, string[] Message)
         {
-            StreamWriter SW = new StreamWriter(Client.GetStream());
-            int Progress = 0;
-            string MessageCompiled;
-
-            while (Progress >= Message.Length)
+            try
             {
-                if (Progress == Message.Length)
-                    break;
-                MessageCompiled = Sorter + ";" + Message[Progress];
-                SW.WriteLine(MessageCompiled);
-                Progress++;
+                StreamWriter SW = new StreamWriter(Client.GetStream());
+                int Progress = 0;
+                string MessageCompiled;
+
+                while (Progress >= Message.Length)
+                {
+                    if (Progress == Message.Length)
+                        break;
+                    MessageCompiled = Sorter + ";" + Message[Progress];
+                    SW.WriteLine(MessageCompiled);
+                    Progress++;
+                    Console.WriteLine("Sending message of " + MessageCompiled);
+                }
+
+                SW.Flush();
             }
-            SW.Flush();
+            catch { }
         }
     }
 }

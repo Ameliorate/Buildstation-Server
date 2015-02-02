@@ -31,7 +31,7 @@ namespace Buildstation_Server.Class
                 NewConnection = Listener.AcceptTcpClient();
                 NewConnectionString = Random.Next(int.MaxValue).ToString();
 
-                ClientTrackers.Add(NewConnectionString, new ClientTracker(NewConnection));
+                ClientTrackers.Add(NewConnectionString, new ClientTracker(NewConnection, NewConnectionString));
                 ClientThreads.Add(NewConnectionString, new Thread(ClientTrackers[NewConnectionString].Connect));
                 ClientTrackerKeys.Add(NewConnectionString);
                 ClientThreads[NewConnectionString].Start();     // Creates an instance of the client tracking class, creates a new thread of it, then starts the thread. Also it adds the key to a list for use in broadcasting.

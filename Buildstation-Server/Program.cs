@@ -15,7 +15,6 @@ namespace Buildstation_Server
             Thread NetworkListenerThread = new Thread(Class.NetworkThread.NetworkListenerThread);
             NetworkListenerThread.Start();
 
-            Class.ClientNetworkSorters.InfoHandler InfoHandler = new Class.ClientNetworkSorters.InfoHandler();
             Class.ClientNetworkSorters.TileGetHandler TileGetHandler = new Class.ClientNetworkSorters.TileGetHandler();
             Class.ClientNetworkSorters.GetAllHandler GetAllHandler = new Class.ClientNetworkSorters.GetAllHandler();
 

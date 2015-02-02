@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Class\ClientNetworkSorter.cs" />
     <Compile Include="Class\ClientNetworkSorters\GetAllHandler.cs" />
-    <Compile Include="Class\ClientNetworkSorters\InfoHandler.cs" />
     <Compile Include="Class\ClientNetworkSorters\TileGetHandler.cs" />
     <Compile Include="Class\ClientTracker.cs" />
     <Compile Include="Class\ContentLoader.cs" />
