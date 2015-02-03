@@ -29,7 +29,7 @@ namespace Buildstation_Server.Class.ClientNetworkSorters
             YPos = Convert.ToInt32(DataSplit[1]);
             ZPos = Convert.ToInt32(DataSplit[2]);
 
-            TileAtSpace = Variables.Map[XPos, YPos, ZPos];
+            TileAtSpace = Variables.Map[new Coordinate(XPos, YPos, ZPos)];
             TileNameSplit = TileTypeAtSpace.Split('_');
             TileTypeAtSpace = TileNameSplit[0];
             TileInitData = Variables.PhysicalObjects[TileAtSpace].GetData();

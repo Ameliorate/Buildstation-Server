@@ -37,7 +37,7 @@ namespace Buildstation_Server.Class
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("[INFO] Client " + UUID + " disconected.");
+                    Console.WriteLine("[Info] Client " + UUID + " disconected.");
                     Connected = false;
                     break;
                 }

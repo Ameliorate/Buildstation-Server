@@ -46,6 +46,7 @@
     <Compile Include="Class\ClientNetworkSorters\TileGetHandler.cs" />
     <Compile Include="Class\ClientTracker.cs" />
     <Compile Include="Class\ContentLoader.cs" />
+    <Compile Include="Class\Coordinate.cs" />
     <Compile Include="Class\NameTools.cs" />
     <Compile Include="Class\NetworkThread.cs" />
     <Compile Include="Class\Objects\ObjectTemplate.cs" />

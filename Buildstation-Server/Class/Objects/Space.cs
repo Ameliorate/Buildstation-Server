@@ -19,8 +19,8 @@ namespace Buildstation_Server.Class.Objects
         /// <param name="Y">The Y Pos of the object you want to create.</param>
         public Space(string _ObjectName, string X, string Y)
         {
-            XPos = Convert.ToInt32(X);
-            YPos = Convert.ToInt32(Y);
+            Position.XPos = Convert.ToInt32(X);
+            Position.YPos = Convert.ToInt32(Y);
 
             ObjectName = _ObjectName;
         }
@@ -35,9 +35,9 @@ namespace Buildstation_Server.Class.Objects
         /// <param name="Z">The Z Pos of the object you want to create</param>
         public Space(string _ObjectName, string X, string Y, string Z)
         {
-            XPos = Convert.ToInt32(X);
-            YPos = Convert.ToInt32(Y);
-            ZPos = Convert.ToInt32(Z);
+            Position.XPos = Convert.ToInt32(X);
+            Position.YPos = Convert.ToInt32(Y);
+            Position.ZPos = Convert.ToInt32(Z);
 
             ObjectName = _ObjectName;
         }
@@ -51,7 +51,6 @@ namespace Buildstation_Server.Class.Objects
         /// </summary>
         public void Initalise()
         {
-            DoesMove = false;
             LeakPercent = 100;        // It is space, so it leaks 100% of the air there.
             Seed = ObjectName.GetHashCode(); // This will get a random seed that isn't dependant on the system time as much since it is dependant on 1 centeral RNG (Right now. This will change.)
             Random Random = new Random(Seed);
@@ -68,11 +67,6 @@ namespace Buildstation_Server.Class.Objects
 
             InitaliseTurf();  // Does things relating to turfs. Like makes you able to walk on them and see through them.
         }
-
-        public override string GetSpriteState()
-        {
-            return "Space" + SpriteNumber;
-        }       // For some reason, you need to override the getspritestate method if there is more than 1 possible sprite for the tiletype.
 
         /// <summary>
         /// Gets the data nesasary to sync to clients upon initalisation.
