@@ -38,14 +38,21 @@ namespace Buildstation_Server.Class.ClientNetworkSorters
             {
                 // Data will be [TileType],[TileName],[XPos],[YPos],[ZPos],[InitData] to spawn an object on clientside.
 
-                CerrentTileName = Variables.Map[new Coordinate(CerrentXPoint, CerrentYPoint, CerrentZPoint)];
+                CerrentTileName = Variables.Map[new Coordinate(CerrentXPoint, CerrentYPoint, CerrentZPoint, "Default")];
                 CerrentTileType = CerrentTileName.Split('_')[0];
                 InitData = Variables.PhysicalObjects[CerrentTileName].GetData();
 
                 PacketBuffer.Add(CerrentTileType + "," + CerrentTileName + "," + CerrentXPoint + "," + CerrentYPoint + "," + CerrentZPoint + "," + InitData);
 
                 CerrentZPoint++;
-                TileIsEmpty = string.IsNullOrEmpty(Variables.Map[new Coordinate(CerrentXPoint, CerrentYPoint, CerrentZPoint)]);
+                try
+                {
+                    TileIsEmpty = string.IsNullOrEmpty(Variables.Map[new Coordinate(CerrentXPoint, CerrentYPoint, CerrentZPoint, "Default")]);
+                }
+                catch
+                {
+                    TileIsEmpty = true;
+                }
 
                 if (TileIsEmpty == true)
                 {

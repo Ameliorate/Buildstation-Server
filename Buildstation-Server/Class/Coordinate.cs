@@ -13,13 +13,16 @@ namespace Buildstation_Server.Class
     {
         public int XPos;
         public int YPos;
-        public int ZPos;
+        public uint ZPos;   // Making this unsigned prevents negative values that would break things.
+        public string Level;
+        
 
-        public Coordinate (int XPos, int YPos, int ZPos)
+        public Coordinate (int XPos, int YPos, int ZPos, string Level)
         {
             this.XPos = XPos;
             this.YPos = YPos;
-            this.ZPos = ZPos;
+            this.ZPos = (uint)ZPos;
+            this.Level = Level;
         }
 
         public static bool operator ==(Coordinate c1, Coordinate c2)
