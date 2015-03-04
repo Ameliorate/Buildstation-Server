@@ -28,8 +28,15 @@ namespace Buildstation_Server.Class.ClientNetworkSorters
             XPos = Convert.ToInt32(DataSplit[0]);
             YPos = Convert.ToInt32(DataSplit[1]);
             ZPos = Convert.ToInt32(DataSplit[2]);
-
-            TileAtSpace = Variables.Map[new Coordinate(XPos, YPos, ZPos)];
+            try
+            {
+                TileAtSpace = Variables.Map[new Coordinate(XPos, YPos, ZPos, "Default")];
+            }
+            catch (Exception)
+            {
+                Gamemode.Generate(XPos, YPos);
+                TileAtSpace = Variables.Map[new Coordinate(XPos, YPos, ZPos, "Default")];   // Once the tile has generated, continue on with what your doing.
+            }
             TileNameSplit = TileTypeAtSpace.Split('_');
             TileTypeAtSpace = TileNameSplit[0];
             TileInitData = Variables.PhysicalObjects[TileAtSpace].GetData();

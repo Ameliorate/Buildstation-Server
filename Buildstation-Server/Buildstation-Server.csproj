@@ -47,12 +47,17 @@
     <Compile Include="Class\ClientTracker.cs" />
     <Compile Include="Class\ContentLoader.cs" />
     <Compile Include="Class\Coordinate.cs" />
+    <Compile Include="Class\Gamemode.cs" />
     <Compile Include="Class\NameTools.cs" />
     <Compile Include="Class\NetworkThread.cs" />
     <Compile Include="Class\Objects\ObjectTemplate.cs" />
     <Compile Include="Class\Objects\Space.cs" />
     <Compile Include="Class\ObjectTools.cs" />
     <Compile Include="Class\PhysicalObject.cs" />
+    <Compile Include="Class\TaskContainer.cs" />
+    <Compile Include="Class\TaskScheduler.cs" />
+    <Compile Include="Class\Task.cs" />
+    <Compile Include="Class\TaskWorker.cs" />
     <Compile Include="Class\TileUpdateThread.cs" />
     <Compile Include="Class\Turf.cs" />
     <Compile Include="Class\Varibles.cs" />

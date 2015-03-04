@@ -37,8 +37,15 @@ namespace Buildstation_Server.Class.ClientNetworkSorters
             while (true)
             {
                 // Data will be [TileType],[TileName],[XPos],[YPos],[ZPos],[InitData] to spawn an object on clientside.
-
-                CerrentTileName = Variables.Map[new Coordinate(CerrentXPoint, CerrentYPoint, CerrentZPoint, "Default")];
+                try
+                {
+                    CerrentTileName = Variables.Map[new Coordinate(CerrentXPoint, CerrentYPoint, CerrentZPoint, "Default")];
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Gamemode.Generate(CerrentXPoint, CerrentYPoint);
+                    CerrentTileName = Variables.Map[new Coordinate(CerrentXPoint, CerrentYPoint, CerrentZPoint, "Default")];
+                }
                 CerrentTileType = CerrentTileName.Split('_')[0];
                 InitData = Variables.PhysicalObjects[CerrentTileName].GetData();
 
